@@ -4,11 +4,12 @@ export interface Sensor {
   name: string;
   type: SensorType;
   location: string;
-  status: 'active' | 'inactive' | 'maintenance';
+  status: SensorStatus;
   lastReading?: string;
   lastUpdate?: string;
 }
 
+export type SensorStatus = 'active' | 'inactive' | 'maintenance';
 export type SensorType = 'temperature' | 'humidity' | 'pressure' | 'vibration' | 'strain' | 'displacement';
 
 export const sensorTypeOptions: { label: string; value: SensorType }[] = [

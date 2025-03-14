@@ -4,10 +4,11 @@ import { cn } from '@/lib/utils';
 import { CheckCircle, AlertTriangle, AlertOctagon, Info } from 'lucide-react';
 
 export type StatusType = 'critical' | 'warning' | 'normal' | 'info';
+export type SensorStatus = 'active' | 'inactive' | 'maintenance';
 
 interface StatusIndicatorProps {
-  status: StatusType;
-  label: string;
+  status: StatusType | SensorStatus;
+  label?: string;
   value?: string | number;
   animate?: boolean;
   className?: string;
@@ -20,30 +21,38 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({
   animate = false,
   className
 }) => {
-  const getStatusClasses = (status: StatusType) => {
+  const getStatusClasses = (status: StatusType | SensorStatus) => {
     switch (status) {
       case 'critical':
         return 'bg-monitor-critical text-white';
       case 'warning':
         return 'bg-monitor-warning text-white';
       case 'normal':
+      case 'active':
         return 'bg-monitor-success text-white';
       case 'info':
         return 'bg-monitor-info text-white';
+      case 'inactive':
+        return 'bg-gray-400 text-white';
+      case 'maintenance':
+        return 'bg-amber-500 text-white';
       default:
         return 'bg-gray-200 text-gray-700';
     }
   };
 
-  const getStatusIcon = (status: StatusType) => {
+  const getStatusIcon = (status: StatusType | SensorStatus) => {
     switch (status) {
       case 'critical':
         return <AlertOctagon className="h-5 w-5" />;
       case 'warning':
+      case 'maintenance':
         return <AlertTriangle className="h-5 w-5" />;
       case 'normal':
+      case 'active':
         return <CheckCircle className="h-5 w-5" />;
       case 'info':
+      case 'inactive':
         return <Info className="h-5 w-5" />;
       default:
         return null;
