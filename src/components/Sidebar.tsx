@@ -18,13 +18,15 @@ import {
   Settings, 
   Building, 
   Wrench, 
-  Waves 
+  Waves,
+  ShieldAlert
 } from 'lucide-react';
 
 const menuItems = [
   { title: 'Dashboard', path: '/', icon: LayoutDashboard },
   { title: 'Monitoring', path: '/monitoring', icon: BarChart3 },
   { title: 'Alerts', path: '/alerts', icon: BellRing },
+  { title: 'Admin', path: '/admin', icon: ShieldAlert },
 ];
 
 const secondaryItems = [
