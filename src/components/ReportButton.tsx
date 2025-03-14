@@ -18,6 +18,7 @@ import {
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { toast } from '@/hooks/use-toast';
+import type { DateRange } from 'react-day-picker';
 
 type TimeRange = 'hourly' | 'daily' | 'weekly' | 'custom';
 
@@ -32,10 +33,7 @@ const ReportButton: React.FC<ReportButtonProps> = ({
 }) => {
   const [timeRange, setTimeRange] = useState<TimeRange>('daily');
   const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
-  const [dateRange, setDateRange] = useState<{
-    from: Date | undefined;
-    to: Date | undefined;
-  }>({
+  const [dateRange, setDateRange] = useState<DateRange>({
     from: undefined,
     to: undefined,
   });
